@@ -41,12 +41,6 @@ class PokemonListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.pokemonName.text = pokemonList[position].name
-        holder.pokemonHp.text = pokemonList[position].hp
-        holder.pokemonAtt.text = pokemonList[position].att
-        holder.pokemonDef.text = pokemonList[position].def
-        holder.pokemonSA.text = pokemonList[position].satt
-        holder.pokemonSD.text = pokemonList[position].sdef
-        holder.pokemonSp.text = pokemonList[position].speed
         /*
         Glide.with(fragment)
             .load(productsList[position].url)

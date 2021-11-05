@@ -26,8 +26,4 @@ class PokemonManager {
             handler.post { callbackError(error) } // se ejecuta en main thread
         })
     }
-
-    fun getPokemonStats(callbackOK : (List<Pokemon>) -> Unit, callbackError : (String) -> Unit) {
-        //Obtener stats?
-    }
 }
