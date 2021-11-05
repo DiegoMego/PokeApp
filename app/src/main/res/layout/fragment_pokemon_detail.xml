@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tviPokemonName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/tviPokemonHp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="HP:"
+        app:layout_constraintStart_toStartOf="@+id/tviPokemonName"
+        app:layout_constraintTop_toBottomOf="@+id/tviPokemonName" />
+
+    <TextView
+        android:id="@+id/tviPokemonHpValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/tviPokemonHp"
+        app:layout_constraintTop_toBottomOf="@+id/tviPokemonName" />
+
+    <TextView
+        android:id="@+id/tviPokemonAttack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Attack:"
+        app:layout_constraintStart_toStartOf="@+id/tviPokemonHp"
+        app:layout_constraintTop_toBottomOf="@+id/tviPokemonHp" />
+
+    <TextView
+        android:id="@+id/tviPokemonAttackValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/tviPokemonAttack"
+        app:layout_constraintTop_toBottomOf="@+id/tviPokemonHp" />
+
+    <TextView
+        android:id="@+id/tviPokemonDefense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Defense:"
+        app:layout_constraintStart_toStartOf="@+id/tviPokemonAttack"
+        app:layout_constraintTop_toBottomOf="@+id/tviPokemonAttack" />
+
+    <TextView
+        android:id="@+id/tviPokemonDefenseValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/tviPokemonDefense"
+        app:layout_constraintTop_toBottomOf="@+id/tviPokemonAttack" />
+
+    <TextView
+        android:id="@+id/tviPokemonSAttack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Special Attack:"
+        app:layout_constraintStart_toStartOf="@+id/tviPokemonDefense"
+        app:layout_constraintTop_toBottomOf="@+id/tviPokemonDefense" />
+
+    <TextView
+        android:id="@+id/tviPokemonSAttackValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/tviPokemonSAttack"
+        app:layout_constraintTop_toBottomOf="@+id/tviPokemonDefense" />
+
+    <TextView
+        android:id="@+id/tviPokemonSDefense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Special Defense:"
+        app:layout_constraintStart_toStartOf="@+id/tviPokemonSAttack"
+        app:layout_constraintTop_toBottomOf="@+id/tviPokemonSAttack" />
+
+    <TextView
+        android:id="@+id/tviPokemonSDefenseValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/tviPokemonSDefense"
+        app:layout_constraintTop_toBottomOf="@+id/tviPokemonSAttack" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/pikachu" />
+
+    <Button
+        android:id="@+id/butFav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Agregar a Favoritos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tviPokemonSDefense" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,4 +20,5 @@ data class Pokemon(
     val special_attack : Int,
     @ColumnInfo(name = "special_defense")
     val special_defense : Int,
+    val url : String
 )

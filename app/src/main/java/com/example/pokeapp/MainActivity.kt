@@ -1,15 +1,14 @@
 package com.example.pokeapp
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
+import com.example.pokeapp.fragment.LoginFragment
+import com.example.pokeapp.fragment.PokemonDetailFragment
 import com.example.pokeapp.fragment.PokemonListFragment
 import com.example.pokeapp.model.Pokemon
-import com.example.pokeapp.shared.PokemonDetailsView
-import com.example.pokeapp.shared.PokemonListView
-import com.google.gson.Gson
+import com.example.pokeapp.shared.*
 import java.util.*
 
 /*
@@ -20,21 +19,21 @@ Integrantes:
    REPOSITORIO: https://github.com/DiegoMego/PokeApp
 * */
 
-class MainActivity : AppCompatActivity(), PokemonListFragment.OnPokemonSelectedListener {
+class MainActivity : AppCompatActivity(), PokemonListFragment.OnPokemonSelectedListener, LoginFragment.OnButtonClickedListener {
     private val fragments = mutableListOf<Fragment>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //fragments.add(LoginFragment())
+        fragments.add(LoginFragment())
         fragments.add(PokemonListFragment())
-        //fragments.add(PokemonDetailFragment())
+        fragments.add(PokemonDetailFragment())
         //fragments.add(FavouritesListFragment())
 
 
         val ft = supportFragmentManager.beginTransaction()
-        ft.add(R.id.flaContent, fragments[0])
+        ft.add(R.id.flaContent, fragments[LoginView])
         Log.i("IngredientsFragment", "Click")
         ft.commit()
     }
@@ -52,8 +51,8 @@ class MainActivity : AppCompatActivity(), PokemonListFragment.OnPokemonSelectedL
 
     fun ChangeToPokemonDetails(poke: Pokemon){
         val bundle = Bundle()
-        bundle.putString("PokemonId", poke.name.toString())
-        val fragment = fragments[1]
+        bundle.putString("PokemonUrl", poke.url)
+        val fragment = fragments[PokemonDetailsView]
         fragment.arguments = bundle
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.flaContent, fragment)
@@ -63,5 +62,16 @@ class MainActivity : AppCompatActivity(), PokemonListFragment.OnPokemonSelectedL
 
     override fun onSelect(pokemon: Pokemon) {
         ChangeToPokemonDetails(pokemon)
+    }
+
+    override fun Continue() {
+        val fragment = fragments[PokemonListView]
+        val ft = supportFragmentManager.beginTransaction()
+        ft.replace(R.id.flaContent, fragment)
+        ft.commit()
+    }
+
+    override fun Favorites() {
+        //To Do
     }
 }

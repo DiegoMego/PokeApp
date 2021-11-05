@@ -3,8 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android/PokeApp/app/src/main/res/layout/activity_main.xml" value="0.5541666666666667" />
+        <entry key="..\:/Android/PokeApp/app/src/main/res/layout/activity_main.xml" value="0.3269565217391304" />
+        <entry key="..\:/Android/PokeApp/app/src/main/res/layout/fragment_favourite_item.xml" value="0.3307291666666667" />
+        <entry key="..\:/Android/PokeApp/app/src/main/res/layout/fragment_list_favourite.xml" value="0.3307291666666667" />
         <entry key="..\:/Android/PokeApp/app/src/main/res/layout/fragment_list_pokemon.xml" value="0.5541666666666667" />
+        <entry key="..\:/Android/PokeApp/app/src/main/res/layout/fragment_login.xml" value="0.5541666666666667" />
+        <entry key="..\:/Android/PokeApp/app/src/main/res/layout/fragment_pokemon_detail.xml" value="0.3307291666666667" />
         <entry key="..\:/Android/PokeApp/app/src/main/res/layout/fragment_pokemon_item.xml" value="0.5541666666666667" />
       </map>
     </option>
