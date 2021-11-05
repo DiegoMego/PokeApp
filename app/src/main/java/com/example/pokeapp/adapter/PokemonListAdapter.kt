@@ -20,7 +20,12 @@ class PokemonListAdapter(
         val listener : (Pokemon) -> Unit,
         val pokemonList: List<Pokemon>) : RecyclerView.ViewHolder(view), View.OnClickListener {
         val pokemonName: TextView = view.findViewById(R.id.tviPokemonName)
-        //val pokemonHp: TextView = view.findViewById(R.id.tviPokemonHp)
+        val pokemonHp: TextView = view.findViewById(R.id.tviPokemonHpValue)
+        val pokemonAtt: TextView = view.findViewById(R.id.tviPokemonAttackValue)
+        val pokemonDef: TextView = view.findViewById(R.id.tviPokemonDefenseValue)
+        val pokemonSA: TextView = view.findViewById(R.id.tviPokemonSAttackValue)
+        val pokemonSD: TextView = view.findViewById(R.id.tviPokemonSDefenseValue)
+        val pokemonSp: TextView = view.findViewById(R.id.tviPokemonSpeedValue)
         init {
             view.setOnClickListener(this)
         }
@@ -36,6 +41,12 @@ class PokemonListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.pokemonName.text = pokemonList[position].name
+        holder.pokemonHp.text = pokemonList[position].hp
+        holder.pokemonAtt.text = pokemonList[position].att
+        holder.pokemonDef.text = pokemonList[position].def
+        holder.pokemonSA.text = pokemonList[position].satt
+        holder.pokemonSD.text = pokemonList[position].sdef
+        holder.pokemonSp.text = pokemonList[position].speed
         /*
         Glide.with(fragment)
             .load(productsList[position].url)

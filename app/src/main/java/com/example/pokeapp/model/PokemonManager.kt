@@ -17,13 +17,17 @@ class PokemonManager {
         val handler = HandlerCompat.createAsync(Looper.myLooper()!!) // main thread
         networkClient.download({data : String ->
             // ok
-            val collectionType = (object : TypeToken<List<Pokemon>>() {}).type
+            val collectionType = (object : TypeToken<PokeMapper>() {}).type
             val gson = Gson()
-            val listPokemon = gson.fromJson<List<Pokemon>>(data, collectionType)
-            handler.post { callbackOK(listPokemon) } // se ejecuta en main thread
+            val d = gson.fromJson<PokeMapper>(data, collectionType)
+            handler.post { callbackOK(d.results) } // se ejecuta en main thread
         }, { error : String ->
             //error
             handler.post { callbackError(error) } // se ejecuta en main thread
         })
+    }
+
+    fun getPokemonStats(callbackOK : (List<Pokemon>) -> Unit, callbackError : (String) -> Unit) {
+        //Obtener stats?
     }
 }

@@ -40,9 +40,114 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="TextView"
+        android:text="HP:"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toBottomOf="@+id/tviPokemonName" />
+
+    <TextView
+        android:id="@+id/tviPokemonHpValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/tviPokemonHp"
+        app:layout_constraintTop_toBottomOf="@+id/tviPokemonName" />
+
+    <TextView
+        android:id="@+id/tviPokemonAttack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Attack:"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/tviPokemonHp" />
+
+    <TextView
+        android:id="@+id/tviPokemonAttackValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/tviPokemonAttack"
+        app:layout_constraintTop_toBottomOf="@+id/tviPokemonHp" />
+
+    <TextView
+        android:id="@+id/tviPokemonDefense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Defense:"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/tviPokemonAttack" />
+
+    <TextView
+        android:id="@+id/tviPokemonDefenseValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/tviPokemonDefense"
+        app:layout_constraintTop_toBottomOf="@+id/tviPokemonAttack" />
+
+    <TextView
+        android:id="@+id/tviPokemonSAttack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Special Attack:"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/tviPokemonDefense" />
+
+    <TextView
+        android:id="@+id/tviPokemonSAttackValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/tviPokemonSAttack"
+        app:layout_constraintTop_toBottomOf="@+id/tviPokemonDefense" />
+
+    <TextView
+        android:id="@+id/tviPokemonSDefense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Special Defense:"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/tviPokemonSAttack" />
+
+    <TextView
+        android:id="@+id/tviPokemonSDefenseValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/tviPokemonSDefense"
+        app:layout_constraintTop_toBottomOf="@+id/tviPokemonSAttack" />
+
+    <TextView
+        android:id="@+id/tviPokemonSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Speed:"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/tviPokemonSDefense" />
+
+    <TextView
+        android:id="@+id/tviPokemonSpeedValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/tviPokemonSpeed"
+        app:layout_constraintTop_toBottomOf="@+id/tviPokemonSDefense" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

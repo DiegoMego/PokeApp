@@ -1,5 +1,6 @@
 package com.example.pokeapp
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,8 @@ import com.example.pokeapp.fragment.PokemonListFragment
 import com.example.pokeapp.model.Pokemon
 import com.example.pokeapp.shared.PokemonDetailsView
 import com.example.pokeapp.shared.PokemonListView
+import com.google.gson.Gson
+import java.util.*
 
 /*
 Integrantes:
@@ -31,15 +34,26 @@ class MainActivity : AppCompatActivity(), PokemonListFragment.OnPokemonSelectedL
 
 
         val ft = supportFragmentManager.beginTransaction()
-        ft.add(R.id.flaContent, fragments[PokemonListView])
+        ft.add(R.id.flaContent, fragments[0])
         Log.i("IngredientsFragment", "Click")
         ft.commit()
     }
 
+    /*
+    private fun almacenarPokemonAI(poke : List<Pokemon>) {
+        val gson = Gson()
+        val pokemon = Pokemon(name)
+        val loginInfoSerializado = gson.toJson(loginInfo)
+        openFileOutput("login_info.json", Context.MODE_PRIVATE).use {
+            it.write(loginInfoSerializado.toByteArray(Charsets.UTF_8))
+        }
+    }
+    */
+
     fun ChangeToPokemonDetails(poke: Pokemon){
         val bundle = Bundle()
         bundle.putString("PokemonId", poke.name.toString())
-        val fragment = fragments[PokemonDetailsView]
+        val fragment = fragments[1]
         fragment.arguments = bundle
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.flaContent, fragment)
