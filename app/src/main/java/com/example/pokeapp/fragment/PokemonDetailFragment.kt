@@ -5,14 +5,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.pokeapp.R
+import com.example.pokeapp.model.Pokemon
 import com.example.pokeapp.model.PokemonManager
-import com.example.pokeapp.model.PokemonStat
 
 class PokemonDetailFragment : Fragment() {
+
+    private var poke : Pokemon? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -28,25 +32,39 @@ class PokemonDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var url = this.arguments?.get("PokemonUrl").toString()
-        PokemonManager(requireContext()).getPokemon(url, { pokeStats : List<PokemonStat> ->
+        var id = this.arguments?.get("PokemonId").toString().toInt()
+        var userId = this.arguments?.get("UserId").toString().toLong()
+        PokemonManager(requireContext()).getPokemon(id, { pokemon : Pokemon ->
+            poke = pokemon
+            val name = view.findViewById<TextView>(R.id.tviPokemonName)
             val hp = view.findViewById<TextView>(R.id.tviPokemonHpValue)
             val attack = view.findViewById<TextView>(R.id.tviPokemonAttackValue)
             val defense = view.findViewById<TextView>(R.id.tviPokemonDefenseValue)
             val sAttack = view.findViewById<TextView>(R.id.tviPokemonSAttackValue)
             val sDefense = view.findViewById<TextView>(R.id.tviPokemonSDefenseValue)
 
-//            for (poke in pokeStats) {
-//                when (poke.stat.name) {
-//                    "hp" -> hp.text = poke.base_stat.toString()
-//                    "attack" -> attack.text = poke.base_stat.toString()
-//                    "defense" -> defense.text = poke.base_stat.toString()
-//                    "special-attack" -> sAttack.text = poke.base_stat.toString()
-//                    "special-defense" -> sDefense.text = poke.base_stat.toString()
-//                }
-//            }
+            name.text = pokemon.name
+            hp.text = pokemon.hp.toString()
+            attack.text = pokemon.att.toString()
+            defense.text = pokemon.def.toString()
+            sAttack.text = pokemon.special_attack.toString()
+            sDefense.text = pokemon.special_defense.toString()
         }, {error : String ->
-            Toast.makeText(activity, "Error: " + error, Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "Error: $error", Toast.LENGTH_SHORT).show()
         })
+
+        view.findViewById<Button>(R.id.butFav).setOnClickListener{ _ : View ->
+            PokemonManager(requireContext()).addToFavorites(id, userId,
+                { exists ->
+                    if (exists) {
+                        Toast.makeText(context, "El pokemon ya existe en favoritos", Toast.LENGTH_LONG)
+                    } else {
+                        Toast.makeText(context, "Pokemon registrado satisfactoriamente", Toast.LENGTH_LONG)
+                    }
+                },
+                { error ->
+                    Toast.makeText(context, "Error: $error", Toast.LENGTH_LONG)
+                })
+        }
     }
 }

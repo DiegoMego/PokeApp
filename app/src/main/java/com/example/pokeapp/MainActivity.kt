@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
+import com.example.pokeapp.fragment.FavoriteListFragment
 import com.example.pokeapp.fragment.LoginFragment
 import com.example.pokeapp.fragment.PokemonDetailFragment
 import com.example.pokeapp.fragment.PokemonListFragment
@@ -29,12 +30,12 @@ class MainActivity : AppCompatActivity(), PokemonListFragment.OnPokemonSelectedL
         fragments.add(LoginFragment())
         fragments.add(PokemonListFragment())
         fragments.add(PokemonDetailFragment())
-        //fragments.add(FavouritesListFragment())
+        fragments.add(FavoriteListFragment())
 
 
         val ft = supportFragmentManager.beginTransaction()
         ft.add(R.id.flaContent, fragments[LoginView])
-        Log.i("IngredientsFragment", "Click")
+        ft.addToBackStack(null)
         ft.commit()
     }
 
@@ -49,29 +50,41 @@ class MainActivity : AppCompatActivity(), PokemonListFragment.OnPokemonSelectedL
     }
     */
 
-    fun ChangeToPokemonDetails(poke: Pokemon){
+    fun ChangeToPokemonDetails(poke: Pokemon, userId : Long){
         val bundle = Bundle()
-        bundle.putString("PokemonUrl", poke.url)
+        bundle.putString("PokemonId", poke.id.toString())
+        bundle.putString("UserId", userId.toString())
         val fragment = fragments[PokemonDetailsView]
         fragment.arguments = bundle
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.flaContent, fragment)
-
+        ft.addToBackStack(null)
         ft.commit()
     }
 
-    override fun onSelect(pokemon: Pokemon) {
-        ChangeToPokemonDetails(pokemon)
+    override fun onSelect(pokemon: Pokemon, userId : Long) {
+        ChangeToPokemonDetails(pokemon, userId)
     }
 
-    override fun Continue() {
+    override fun Continue(userId : Long) {
+        val bundle = Bundle()
+        bundle.putString("userId", userId.toString())
         val fragment = fragments[PokemonListView]
+        fragment.arguments = bundle
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.flaContent, fragment)
+        ft.addToBackStack(null)
         ft.commit()
     }
 
-    override fun Favorites() {
-        //To Do
+    override fun Favorites(userId : Long) {
+        val bundle = Bundle()
+        bundle.putString("userId", userId.toString())
+        val fragment = fragments[FavouritesView]
+        fragment.arguments = bundle
+        val ft = supportFragmentManager.beginTransaction()
+        ft.replace(R.id.flaContent, fragment)
+        ft.addToBackStack(null)
+        ft.commit()
     }
 }

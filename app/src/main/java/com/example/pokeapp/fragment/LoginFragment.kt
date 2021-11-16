@@ -6,13 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.pokeapp.R
+import com.example.pokeapp.model.LoginManager
 
 class LoginFragment : Fragment() {
     interface OnButtonClickedListener {
-        fun Continue()
-        fun Favorites()
+        fun Continue(userId : Long)
+        fun Favorites(userId : Long)
     }
 
     private var listener : OnButtonClickedListener? = null
@@ -35,13 +38,82 @@ class LoginFragment : Fragment() {
 
         val butContinue = view.findViewById<Button>(R.id.butContinue)
         val butFavorites = view.findViewById<Button>(R.id.butFavorites)
+        val eteUsername = view.findViewById<EditText>(R.id.eteUsername)
 
         butContinue.setOnClickListener{ _ : View ->
-            listener?.Continue()
+            val username = eteUsername.text.toString()
+            if (username.isNotEmpty()) {
+                LoginManager.instance.userExists(
+                        username,
+                        { exists ->
+                            if (!exists) {
+                                LoginManager.instance.saveUser(
+                                    username,
+                                    { id ->
+                                        Toast.makeText(context, "Usuario Guardado", Toast.LENGTH_SHORT)
+                                        listener?.Continue(id)
+                                    },
+                                    {
+                                        Toast.makeText(context, "Error al intentar guardar el usuario", Toast.LENGTH_LONG)
+                                    }
+                                )
+                            }else{
+                                LoginManager.instance.getUser(
+                                    username,
+                                    { id ->
+                                        listener?.Continue(id)
+                                    },
+                                    {
+                                        Toast.makeText(context, "Error al intentar obtener el usuario", Toast.LENGTH_LONG)
+                                    }
+                                )
+                            }
+                        },
+                        {
+                            Toast.makeText(context, "Error al intentar guardar su usuario", Toast.LENGTH_LONG)
+                        })
+
+            }else{
+                Toast.makeText(context, "Ingrese su nombre de usuario", Toast.LENGTH_LONG)
+            }
         }
 
         butFavorites.setOnClickListener{ _ : View ->
-            listener?.Favorites()
+            val username = eteUsername.text.toString()
+            if (username.isNotEmpty()) {
+                LoginManager.instance.userExists(
+                    username,
+                    { exists ->
+                        if (!exists) {
+                            LoginManager.instance.saveUser(
+                                username,
+                                { id ->
+                                    Toast.makeText(context, "Usuario Guardado", Toast.LENGTH_SHORT)
+                                    listener?.Favorites(id)
+                                },
+                                {
+                                    Toast.makeText(context, "Error al intentar guardar el usuario", Toast.LENGTH_LONG)
+                                }
+                            )
+                        }else{
+                            LoginManager.instance.getUser(
+                                username,
+                                { id ->
+                                    listener?.Favorites(id)
+                                },
+                                {
+                                    Toast.makeText(context, "Error al intentar obtener el usuario", Toast.LENGTH_LONG)
+                                }
+                            )
+                        }
+                    },
+                    {
+                        Toast.makeText(context, "Error al intentar guardar su usuario", Toast.LENGTH_LONG)
+                    })
+
+            }else{
+                Toast.makeText(context, "Ingrese su nombre de usuario", Toast.LENGTH_LONG)
+            }
         }
     }
 }

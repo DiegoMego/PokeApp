@@ -1,6 +1,6 @@
 package com.example.pokeapp.model
 
-data class PokemonStat (
-    val id : Int,
+data class User (
+    val id : Long,
     val name : String
 )
