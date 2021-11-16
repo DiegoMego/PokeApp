@@ -25,7 +25,7 @@ class PokemonListAdapter(
         val pokemonDef: TextView = view.findViewById(R.id.tviPokemonDefenseValue)
         val pokemonSA: TextView = view.findViewById(R.id.tviPokemonSAttackValue)
         val pokemonSD: TextView = view.findViewById(R.id.tviPokemonSDefenseValue)
-        val pokemonSp: TextView = view.findViewById(R.id.tviPokemonSpeedValue)
+
         init {
             view.setOnClickListener(this)
         }
@@ -41,6 +41,11 @@ class PokemonListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.pokemonName.text = pokemonList[position].name
+        holder.pokemonHp.text = pokemonList[position].hp.toString()
+        holder.pokemonAtt.text = pokemonList[position].att.toString()
+        holder.pokemonDef.text = pokemonList[position].def.toString()
+        holder.pokemonSA.text = pokemonList[position].special_attack.toString()
+        holder.pokemonSD.text = pokemonList[position].special_defense.toString()
         /*
         Glide.with(fragment)
             .load(productsList[position].url)

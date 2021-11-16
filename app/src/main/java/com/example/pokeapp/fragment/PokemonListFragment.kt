@@ -36,7 +36,7 @@ class PokemonListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        PokemonManager().getPokemons({pokeList : List<Pokemon> ->
+        PokemonManager(requireContext()).getPokemons({pokeList : List<Pokemon> ->
             val rviPoke = view.findViewById<RecyclerView>(R.id.rviPokemon)
             rviPoke.adapter = PokemonListAdapter(
               pokeList,
