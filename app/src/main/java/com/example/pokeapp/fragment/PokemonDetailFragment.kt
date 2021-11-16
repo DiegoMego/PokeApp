@@ -50,7 +50,7 @@ class PokemonDetailFragment : Fragment() {
             defense.text = pokemon.def.toString()
             sAttack.text = pokemon.special_attack.toString()
             sDefense.text = pokemon.special_defense.toString()
-            Log.i("url", pokemon.url)
+
             Glide.with(this).load(pokemon.url).fitCenter().into(iviPokeImage)
         }, {error : String ->
             Toast.makeText(activity, "Error: $error", Toast.LENGTH_SHORT).show()

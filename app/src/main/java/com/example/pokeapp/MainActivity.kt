@@ -3,12 +3,15 @@ package com.example.pokeapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.pokeapp.fragment.FavoriteListFragment
 import com.example.pokeapp.fragment.LoginFragment
 import com.example.pokeapp.fragment.PokemonDetailFragment
 import com.example.pokeapp.fragment.PokemonListFragment
+import com.example.pokeapp.model.Favorite
 import com.example.pokeapp.model.Pokemon
+import com.example.pokeapp.model.PokemonManager
 import com.example.pokeapp.shared.*
 import java.util.*
 
@@ -20,7 +23,7 @@ Integrantes:
    REPOSITORIO: https://github.com/DiegoMego/PokeApp
 * */
 
-class MainActivity : AppCompatActivity(), PokemonListFragment.OnPokemonSelectedListener, LoginFragment.OnButtonClickedListener {
+class MainActivity : AppCompatActivity(), PokemonListFragment.OnPokemonSelectedListener, LoginFragment.OnButtonClickedListener, FavoriteListFragment.OnPokemonDeletedListener {
     private val fragments = mutableListOf<Fragment>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,5 +89,19 @@ class MainActivity : AppCompatActivity(), PokemonListFragment.OnPokemonSelectedL
         ft.replace(R.id.flaContent, fragment)
         ft.addToBackStack(null)
         ft.commit()
+    }
+
+    override fun onSelect(favorite: Favorite, userId: Long) {
+        PokemonManager(this).deleteFromFavorites(favorite.id,
+            { deleted ->
+                if (deleted) {
+                    Toast.makeText(this, "Registro eliminado", Toast.LENGTH_SHORT)
+                } else {
+                    Toast.makeText(this, "No se pudo eliminar el registro", Toast.LENGTH_SHORT)
+                }
+            },
+            {
+                Toast.makeText(this, "Ocurrio un error", Toast.LENGTH_SHORT)
+            })
     }
 }

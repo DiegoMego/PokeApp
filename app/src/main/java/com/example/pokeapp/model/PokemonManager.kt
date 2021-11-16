@@ -71,21 +71,24 @@ class PokemonManager(val context : Context) {
                 val pokemon = dbFirebase.collection("pokemon").document(pokemonId.toString())
                 val user = dbFirebase.collection("users").document(userId.toString())
 
-                val data = hashMapOf<String, Any>(
-                    "pokemon" to pokemon,
-                    "user" to user
-                )
-
-                val id = System.currentTimeMillis()
-
-                dbFirebase.collection("favorites").document(
-                    id.toString()
-                ).set(data)
+                pokemon.get()
                     .addOnSuccessListener {
-                        callbackOK(exists)
-                    }
-                    .addOnFailureListener {
-                        callbackError(it.message!!)
+                        val data = hashMapOf<String, Any>(
+                            "pokemon" to pokemon,
+                            "user" to user,
+                            "name" to it["name"].toString()
+                        )
+                        val id = System.currentTimeMillis()
+
+                        dbFirebase.collection("favorites").document(
+                            id.toString()
+                        ).set(data)
+                            .addOnSuccessListener {
+                                callbackOK(exists)
+                            }
+                            .addOnFailureListener {
+                                callbackError(it.message!!)
+                            }
                     }
             } else {
                 callbackOK(exists)
@@ -101,18 +104,18 @@ class PokemonManager(val context : Context) {
                     (it["pokemon"]!! as DocumentReference).id.toInt() > 0
                     (it["user"]!! as DocumentReference).id.toLong() == userId
                 }.toMutableList()
-                val favorrites = arrayListOf<Favorite>()
+                val favorites = arrayListOf<Favorite>()
                 for (document in result) {
-                    dbFirebase.collection("pokemon").document((document.data["pokemon"]!! as DocumentReference).id).get()
-                        .addOnSuccessListener { pokemon ->
-                            favorrites.add(
+                    val id = (document.data["pokemon"]!! as DocumentReference).id
+                    val pokemon = dbFirebase.collection("pokemon").document(id)
+                            Log.i("favoritos", pokemon.id)
+                            favorites.add(
                                 Favorite(
                                 document.id.toLong(),
-                                pokemon["name"].toString()
+                                document["name"].toString()
                             ))
                         }
-                }
-                callbackOK(favorrites)
+                callbackOK(favorites)
             }
             .addOnFailureListener{
                 callbackError(it.message!!)

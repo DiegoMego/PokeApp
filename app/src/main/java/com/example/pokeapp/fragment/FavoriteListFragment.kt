@@ -2,6 +2,7 @@ package com.example.pokeapp.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,7 +44,11 @@ class FavoriteListFragment : Fragment() {
 
         PokemonManager(requireContext()).getFavorites(userId!!, { favorites : List<Favorite> ->
             val rviFavorites = view.findViewById<RecyclerView>(R.id.rviFavourites)
-            rviFavorites.adapter = FavoriteListAdapter(requireContext(), favorites)
+            rviFavorites.adapter = FavoriteListAdapter(
+                favorites
+            ) { favorite ->
+                listener?.onSelect(favorite, userId!!)
+            }
         }, {error : String ->
             Toast.makeText(activity, "Error: " + error, Toast.LENGTH_SHORT).show()
         })
