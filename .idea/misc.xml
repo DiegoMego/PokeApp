@@ -10,6 +10,7 @@
         <entry key="..\:/Android/PokeApp/app/src/main/res/layout/fragment_login.xml" value="0.5541666666666667" />
         <entry key="..\:/Android/PokeApp/app/src/main/res/layout/fragment_pokemon_detail.xml" value="0.3307291666666667" />
         <entry key="..\:/Android/PokeApp/app/src/main/res/layout/fragment_pokemon_item.xml" value="0.5541666666666667" />
+        <entry key="app/src/main/res/layout/fragment_list_pokemon.xml" value="0.23961499493414387" />
       </map>
     </option>
   </component>
