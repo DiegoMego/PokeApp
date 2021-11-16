@@ -2,6 +2,7 @@ package com.example.pokeapp.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +42,7 @@ class PokemonDetailFragment : Fragment() {
             val defense = view.findViewById<TextView>(R.id.tviPokemonDefenseValue)
             val sAttack = view.findViewById<TextView>(R.id.tviPokemonSAttackValue)
             val sDefense = view.findViewById<TextView>(R.id.tviPokemonSDefenseValue)
-            val iviPokeImage = view.findViewById<ImageView>(R.id.iviPokemonImg)
+            val iviPokeImage = view.findViewById<ImageView>(R.id.imageView)
 
             name.text = pokemon.name
             hp.text = pokemon.hp.toString()
@@ -49,6 +50,7 @@ class PokemonDetailFragment : Fragment() {
             defense.text = pokemon.def.toString()
             sAttack.text = pokemon.special_attack.toString()
             sDefense.text = pokemon.special_defense.toString()
+            Log.i("url", pokemon.url)
             Glide.with(this).load(pokemon.url).fitCenter().into(iviPokeImage)
         }, {error : String ->
             Toast.makeText(activity, "Error: $error", Toast.LENGTH_SHORT).show()
