@@ -5,14 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.pokeapp.R
 import com.example.pokeapp.model.Pokemon
 import com.example.pokeapp.model.PokemonManager
+import org.w3c.dom.Text
 
 class PokemonDetailFragment : Fragment() {
 
@@ -42,6 +41,7 @@ class PokemonDetailFragment : Fragment() {
             val defense = view.findViewById<TextView>(R.id.tviPokemonDefenseValue)
             val sAttack = view.findViewById<TextView>(R.id.tviPokemonSAttackValue)
             val sDefense = view.findViewById<TextView>(R.id.tviPokemonSDefenseValue)
+            val iviPokeImage = view.findViewById<ImageView>(R.id.iviPokemonImg)
 
             name.text = pokemon.name
             hp.text = pokemon.hp.toString()
@@ -49,6 +49,7 @@ class PokemonDetailFragment : Fragment() {
             defense.text = pokemon.def.toString()
             sAttack.text = pokemon.special_attack.toString()
             sDefense.text = pokemon.special_defense.toString()
+            Glide.with(this).load(pokemon.url).fitCenter().into(iviPokeImage)
         }, {error : String ->
             Toast.makeText(activity, "Error: $error", Toast.LENGTH_SHORT).show()
         })

@@ -3,6 +3,7 @@ package com.example.pokeapp.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,7 @@ class PokemonListAdapter(
         val pokemonDef: TextView = view.findViewById(R.id.tviPokemonDefenseValue)
         val pokemonSA: TextView = view.findViewById(R.id.tviPokemonSAttackValue)
         val pokemonSD: TextView = view.findViewById(R.id.tviPokemonSDefenseValue)
+        val iviPokeImage : ImageView = view.findViewById(R.id.iviPokemonImg)
 
         init {
             view.setOnClickListener(this)
@@ -46,12 +48,9 @@ class PokemonListAdapter(
         holder.pokemonDef.text = pokemonList[position].def.toString()
         holder.pokemonSA.text = pokemonList[position].special_attack.toString()
         holder.pokemonSD.text = pokemonList[position].special_defense.toString()
-        /*
-        Glide.with(fragment)
-            .load(productsList[position].url)
-            .fitCenter()
-            .into(holder.iviProductImage)
-         */
+
+        Glide.with(fragment).load(pokemonList[position].url).fitCenter().into(holder.iviPokeImage)
+
     }
 
     override fun getItemCount(): Int {
